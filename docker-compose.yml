@@ -1,11 +1,8 @@
-version: '3.8'
-
 services:
 
   postgres:
     image: postgres:15
     container_name: koins-postgres
-    restart: always
     environment:
       POSTGRES_DB: koins_db
       POSTGRES_USER: postgres
@@ -19,3 +16,17 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+
+  app:
+    build: .
+    container_name: koins-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - rabbitmq
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/koins_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_RABBITMQ_HOST: rabbitmq

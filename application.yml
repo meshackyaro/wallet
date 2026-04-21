@@ -3,9 +3,11 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/koins_db
-    username: postgres
-    password: password
+    spring.datasource.url=jdbc:postgresql://koins-postgres:5432/koins_db
+    spring.datasource.username=postgres
+    spring.datasource.password=postgres
+    spring.jpa.hibernate.ddl-auto=update
+    spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
 
   jpa:
     hibernate:
