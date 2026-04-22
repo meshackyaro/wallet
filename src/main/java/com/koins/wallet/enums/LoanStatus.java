@@ -1,4 +1,4 @@
-package com.koins.wallet.entities;
+package com.koins.wallet.enums;
 
 public enum LoanStatus {
 
@@ -6,5 +6,6 @@ public enum LoanStatus {
     APPROVED,
     DISBURSED,
     REPAID,
-    DEFAULTED
+    DEFAULTED,
+    CLOSED
 }

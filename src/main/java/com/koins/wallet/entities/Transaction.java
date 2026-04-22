@@ -1,5 +1,7 @@
 package com.koins.wallet.entities;
 
+import com.koins.wallet.enums.TransactionStatus;
+import com.koins.wallet.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -21,7 +23,7 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
@@ -29,14 +31,21 @@ public class Transaction {
     @JoinColumn(name = "wallet_id", nullable = false)
     private Wallet wallet;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TransactionType transactionType;
+
+    @Column(precision = 19, scale = 2)
     private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private TransactionStatus transactionStatus;
 
     @Column(unique = true, nullable = false)
     private String referenceNumber;
 
     @CreationTimestamp
+    @Column(nullable = false)
     private LocalDateTime timestamp;
 }

@@ -1,5 +1,6 @@
 package com.koins.wallet.entities;
 
+import com.koins.wallet.enums.WalletStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -19,18 +20,24 @@ public class Wallet {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @Builder.Default
     @Column(precision = 19, scale = 2, nullable = false)
-    private BigDecimal balance;
+    private BigDecimal balance = BigDecimal.ZERO;
 
-    private String currency;
+    @Builder.Default
+    @Column(nullable = false)
+    private String currency = "NGN";
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
-    private WalletStatus walletStatus;
+    @Column(nullable = false)
+    private WalletStatus walletStatus = WalletStatus.ACTIVE;
 
     @CreationTimestamp
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 }
