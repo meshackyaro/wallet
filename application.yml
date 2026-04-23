@@ -5,7 +5,7 @@ spring:
   datasource:
     spring.datasource.url=jdbc:postgresql://koins-postgres:5432/koins_db
     spring.datasource.username=postgres
-    spring.datasource.password=postgres
+    spring.datasource.password=password
     spring.jpa.hibernate.ddl-auto=update
     spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
 
@@ -23,6 +23,28 @@ spring:
     username: guest
     password: guest
 
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
 jwt:
-  secret: your-secret-key
-  expiration: 86400000
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION}
+
+paystack:
+  secret:
+    key: ${PAYSTACK_SECRET_KEY}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs

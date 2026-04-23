@@ -5,13 +5,13 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class RegisterRequest {
+public class SignupRequest {
     @NotBlank(message = "Full name is required")
     private String fullName;
 
     @Email(message = "Invalid email format")
     @NotBlank(message = "Email is required")
-    private String email;
+    private String emailAddress;
 
     @NotBlank(message = "Phone number is required")
     private String phoneNumber;
@@ -20,5 +20,5 @@ public class RegisterRequest {
     private String password;
 
     @NotBlank(message = "BVN/NIN is required")
-    private String bvnOrNin;
+    private String bvnNin;
 }

@@ -5,7 +5,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 @Data
-public class WebhookPayLoad {
+public class WebhookPayload {
     private String event;
     private WebhookData data;
 
