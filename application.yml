@@ -23,10 +23,10 @@ spring:
     password: guest
 
   mail:
-    host: ${MAIL_HOST}
-    port: ${MAIL_PORT}
-    username: ${MAIL_USERNAME}
-    password: ${MAIL_PASSWORD}
+    host: ${MAIL_HOST:localhost}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:default}
+    password: ${MAIL_PASSWORD:default}
     properties:
       mail:
         smtp:
@@ -35,12 +35,12 @@ spring:
             enable: true
 
 jwt:
-  secret: ${JWT_SECRET}
-  expiration: ${JWT_EXPIRATION}
+  secret: ${JWT_SECRET:your_very_long_and_secure_jwt_secret_placeholder}
+  expiration: ${JWT_EXPIRATION:86400000}
 
 paystack:
   secret:
-    key: ${PAYSTACK_SECRET_KEY}
+    key: ${PAYSTACK_SECRET_KEY:sk_test_placeholder}
 
 springdoc:
   swagger-ui:
